@@ -1,0 +1,256 @@
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f8f9fa;          /* светлый приятный фон */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  margin: 40px 0 30px;
+  font-size: 2.8rem;
+  color: #2c3e50;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 800px;
+  height: 4px;
+  background: #3498db;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+/* Галерея */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;                    /* больше воздуха между карточками */
+  justify-content: center;      /* центрируем карточки на странице */
+  max-width: 1400px;
+  margin: 0 auto 60px;
+}
+
+/* Каждая карточка */
+.item {
+  flex: 0 1 300px;              /* удобная ширина карточки ~300–320px */
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;             /* чтобы скругления работали */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);  /* мягкая тень */
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+.item:hover {
+  transform: translateY(-12px); /* подъём при наведении */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Изображение */
+.image {
+  width: 100%;
+  height: 340px;                /* чуть ниже, чтобы карточки не были слишком высокими */
+  background-size: cover;
+  background-position: center;
+  position: relative;           /* для возможного оверлея в будущем */
+  transition: transform 0.4s ease;
+}
+
+.item:hover .image {
+  transform: scale(1.08);       /* лёгкое увеличение картинки при наведении */
+}
+
+/* Подпись и ссылка */
+.caption {
+  margin: 18px 0 8px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.link {
+  display: block;               /* занимает всю ширину */
+  text-align: center;
+  margin: 0 20px 20px;          /* отступы внутри карточки */
+  padding: 10px 0;
+  color: #3498db;
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-top: 1px solid #eee;
+  transition: color 0.25s;
+}
+
+.link:hover {
+  color: #e74c3c;               /* яркий акцент при наведении */
+}
+
+/* Адаптивность (чтобы на мобильных было красиво) */
+@media (max-width: 900px) {
+  .item {
+    flex: 0 1 45%;             /* 2 в ряд */
+  }
+}
+
+@media (max-width: 600px) {
+  .item {
+    flex: 0 1 90%;             /* 1 в ряд */
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+p {
+    text-align: justify;
+    text-align-last: left;       /* последняя строка не растягивается */
+    hyphens: auto;               /* ← главное! переносы слов */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    margin: 0 auto 40px;
+    max-width: 800px;            /* ← важно! ограничить ширину строки */
+    font-size: 1.1rem;           /* нормальный размер текста */
+    line-height: 1.7;
+    color: #333;
+    
+}
+#p1 {
+    text-align: center;
+    font-size: 1.25rem;          /* больше обычного текста, но не 2rem */
+    margin: 0 auto 40px;
+    max-width: 50%;
+    color: #2c3e50;
+    font-weight: 500;
+}
+.skills-section {
+  max-width: 1000px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 0 80px;
+  position: relative;
+}
+
+.content-wrapper {
+  position: relative;           /* ← точка отсчёта для абсолютных moon */
+  max-width: 2000px;
+  margin: 0 auto;
+  padding-left: 12px;          /* ← место слева для смайликов */
+  min-height: 100vh;            /* чтобы смайлики не "падали" слишком низко */
+}
+
+/* Базовые стили (добавь к существующим) */
+.carousel {
+  position: relative;
+}
+
+.slides-container {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  padding: 30px 40px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  background: #ffffff;         /* ← ОБЯЗАТЕЛЬНО явный фон */
+  padding: 30px 40px;
+  box-sizing: border-box;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.5s ease, visibility 0s linear 0s; /* visibility мгновенно при активации */
+}
+
+h2 {
+  font-size: 1.9rem;
+  margin: 0 0 1.2rem;
+  color: #2c3e50;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s;
+}
+
+.arrow:hover {
+  background: #2980b9;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow  { left: -100px; }
+.right-arrow { right: -100px; }
+
+/* На мобильных прячем стрелки или делаем их меньше */
+@media (max-width: 768px) {
+  .skills-section { padding: 0 40px; }
+  .arrow {
+    width: 45px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+}
+ .emoji-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.flying-emoji {
+  position: absolute;
+  font-size: 3.5rem;
+  opacity: 0.12;
+  animation: floatRandom 20s infinite ease-in-out;
+}
+
+@keyframes floatRandom {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(var(--dx1, 100px), var(--dy1, -50px)) rotate(10deg); }
+  66% { transform: translate(var(--dx2, -80px), var(--dy2, 40px)) rotate(-5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+p1 {
+  font-size: 1.14rem;
+  margin: 0 0 1.2rem;
+  color: #502c50;
+  text-align: justify;
+    text-align-last: left;       /* последняя строка не растягивается */
+    hyphens: auto;               /* ← главное! переносы слов */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    margin: 0 auto 40px;
+    max-width: 800px;  
+}
